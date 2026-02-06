@@ -16,7 +16,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,7 +32,7 @@ class Task008Test {
             allOf(
                 isAssignableFrom(TextView::class.java),
                 withId(R.id.titleTextView),
-                withText("Hello World!"),
+                withText(R.string.hello_world),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
             )
@@ -42,7 +41,7 @@ class Task008Test {
         onView(
             allOf(
                 withId(R.id.hideButton),
-                withText("hide"),
+                withText(R.string.hide),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
