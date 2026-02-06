@@ -1,5 +1,3 @@
-package ru.easycode.zerotoheroandroidtdd
-
 import android.widget.LinearLayout
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -9,14 +7,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.allOf
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
+import ru.easycode.zerotoheroandroidtdd.MainActivity
+import ru.easycode.zerotoheroandroidtdd.R
 
-@RunWith(AndroidJUnit4::class)
 class Task003Test {
 
     @get:Rule
@@ -27,7 +23,7 @@ class Task003Test {
         onView(
             allOf(
                 withId(R.id.titleTextView),
-                withText("I am an Android Developer!"),
+                withText(R.string.i_am_an_android_developer),
                 withParent(isAssignableFrom(LinearLayout::class.java))
             )
         ).check(matches(isDisplayed()))
