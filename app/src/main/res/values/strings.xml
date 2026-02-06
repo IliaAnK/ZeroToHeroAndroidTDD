@@ -4,4 +4,5 @@
     <string name="i_am_an_android_developer">I am an Android Developer!</string>
     <string name="change">change</string>
     <string name="hide">hide</string>
+    <string name="remove">remove</string>
 </resources>
