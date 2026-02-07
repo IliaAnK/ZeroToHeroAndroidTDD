@@ -17,7 +17,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.allOf
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,7 +33,7 @@ class Task010Test {
             allOf(
                 isAssignableFrom(TextView::class.java),
                 withId(R.id.titleTextView),
-                withText("Hello World!"),
+                withText(R.string.hello_world),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
             )
@@ -43,7 +42,7 @@ class Task010Test {
         onView(
             allOf(
                 withId(R.id.removeButton),
-                withText("remove"),
+                withText(R.string.remove),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))

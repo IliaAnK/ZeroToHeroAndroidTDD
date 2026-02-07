@@ -18,12 +18,14 @@ class MainActivity : AppCompatActivity() {
 
         removeButton.setOnClickListener {
             rootLayout.removeView(titleTextView)
+            removeButton.isEnabled = false
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean(IS_TEXT_VIEW_REMOVED_KEY, !rootLayout.contains(titleTextView))
+        outState.putBoolean(IS_REMOVE_BUTTON_ENABLED_KEY, removeButton.isEnabled)
     }
 
     override fun onRestoreInstanceState(
@@ -33,9 +35,11 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState.getBoolean(IS_TEXT_VIEW_REMOVED_KEY)) {
             rootLayout.removeView(titleTextView)
         }
+        removeButton.isEnabled = savedInstanceState.getBoolean(IS_REMOVE_BUTTON_ENABLED_KEY)
     }
 
     companion object {
         const val IS_TEXT_VIEW_REMOVED_KEY = "IS_TEXT_VIEW_REMOVED_KEY"
+        const val IS_REMOVE_BUTTON_ENABLED_KEY = "IS_REMOVE_BUTTON_ENABLED_KEY"
     }
 }
