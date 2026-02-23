@@ -6,6 +6,7 @@ interface Count {
         internal const val STEP_SHOULD_BE_POSITIVE = "step should be positive, but was"
         internal const val MAX_SHOULD_BE_POSITIVE = "max should be positive, but was"
         internal const val MAX_SHOULD_BE_MORE_THAN_STEP = "max should be more than step"
+        internal const val MAX_SHOULD_BE_MORE_THAN_MIN = "max should be more than min"
     }
 
     fun increment(number: String): UiState

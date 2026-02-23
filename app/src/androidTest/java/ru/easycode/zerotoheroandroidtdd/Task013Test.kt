@@ -39,7 +39,7 @@ class Task013Test {
             allOf(
                 isAssignableFrom(TextView::class.java),
                 withId(R.id.countTextView),
-                withText("0"),
+                withText(R.string.zero),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
             )
@@ -48,7 +48,7 @@ class Task013Test {
         onView(
             allOf(
                 withId(R.id.incrementButton),
-                withText("+"),
+                withText(R.string.increment),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
@@ -58,7 +58,7 @@ class Task013Test {
         onView(
             allOf(
                 withId(R.id.decrementButton),
-                withText("-"),
+                withText(R.string.decrement),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
@@ -86,12 +86,12 @@ class Task013Test {
         onView(withId(R.id.decrementButton)).check(matches(isEnabled()))
 
         onView(withId(R.id.decrementButton)).perform(click())
-        onView(withId(R.id.countTextView)).check(matches(withText("0")))
+        onView(withId(R.id.countTextView)).check(matches(withText(R.string.zero)))
         onView(withId(R.id.incrementButton)).check(matches(isEnabled()))
         onView(withId(R.id.decrementButton)).check(matches(isNotEnabled()))
 
         activityScenarioRule.scenario.recreate()
-        onView(withId(R.id.countTextView)).check(matches(withText("0")))
+        onView(withId(R.id.countTextView)).check(matches(withText(R.string.zero)))
         onView(withId(R.id.incrementButton)).check(matches(isEnabled()))
         onView(withId(R.id.decrementButton)).check(matches(isNotEnabled()))
     }
