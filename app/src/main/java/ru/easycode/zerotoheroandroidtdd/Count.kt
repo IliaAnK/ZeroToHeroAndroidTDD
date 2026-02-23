@@ -2,17 +2,38 @@ package ru.easycode.zerotoheroandroidtdd
 
 interface Count {
 
-    fun increment(number: String): String
+    companion object {
+        internal const val STEP_SHOULD_BE_POSITIVE = "step should be positive, but was"
+        internal const val MAX_SHOULD_BE_POSITIVE = "max should be positive, but was"
+        internal const val MAX_SHOULD_BE_MORE_THAN_STEP = "max should be more than step"
+    }
 
-    class Base(val step: Int) : Count {
+    fun increment(number: String): UiState
+
+    class Base(private val step: Int, private val max: Int) : Count {
         init {
-            if (step <= 0) {
-                throw IllegalStateException("step should be positive, but was $step")
+            when {
+                step <= 0 -> {
+                    throw IllegalStateException("$STEP_SHOULD_BE_POSITIVE $step")
+                }
+                max <= 0 -> {
+                    throw IllegalStateException("$MAX_SHOULD_BE_POSITIVE $max")
+                }
+                step > max -> {
+                    throw IllegalStateException(MAX_SHOULD_BE_MORE_THAN_STEP)
+                }
             }
         }
 
-        override fun increment(number: String): String {
-            return (step + number.toInt()).toString()
+        override fun increment(number: String): UiState {
+            val result = step + number.toInt()
+            val isThereOneMoreStep = result + step <= max
+
+            return if (isThereOneMoreStep) {
+                UiState.Base(result.toString())
+            } else {
+                UiState.Max(result.toString())
+            }
         }
     }
 }
