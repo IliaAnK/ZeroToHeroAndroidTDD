@@ -28,12 +28,11 @@ interface Count {
 
         override fun increment(number: String): UiState {
             val result = step + number.toInt()
-            val isThereOneMoreStep = result + step <= max
 
-            return if (isThereOneMoreStep) {
-                UiState.Base(result.toString())
-            } else {
-                UiState.Max(result.toString())
+            return when {
+                result >= max -> UiState.Max(max.toString())
+                result + step > max -> UiState.Max(result.toString())
+                else -> UiState.Base(result.toString())
             }
         }
     }
