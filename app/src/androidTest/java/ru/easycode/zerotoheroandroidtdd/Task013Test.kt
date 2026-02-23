@@ -18,7 +18,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.allOf
-import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,6 +34,16 @@ class Task013Test {
 
     @Test
     fun test_increment() {
+        onView(
+            allOf(
+                withId(R.id.decrementButton),
+                withText(R.string.decrement),
+                isAssignableFrom(Button::class.java),
+                withParent(isAssignableFrom(LinearLayout::class.java)),
+                withParent(withId(R.id.rootLayout))
+            )
+        ).check(isCompletelyLeftOf(withId(R.id.countTextView)))
+
         onView(
             allOf(
                 isAssignableFrom(TextView::class.java),
@@ -54,16 +63,6 @@ class Task013Test {
                 withParent(withId(R.id.rootLayout))
             )
         ).check(isCompletelyRightOf(withId(R.id.countTextView)))
-
-        onView(
-            allOf(
-                withId(R.id.decrementButton),
-                withText(R.string.decrement),
-                isAssignableFrom(Button::class.java),
-                withParent(isAssignableFrom(LinearLayout::class.java)),
-                withParent(withId(R.id.rootLayout))
-            )
-        ).check(isCompletelyLeftOf(withId(R.id.countTextView)))
 
         onView(withId(R.id.decrementButton)).check(matches(isNotEnabled()))
         onView(withId(R.id.incrementButton)).perform(click())

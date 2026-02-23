@@ -13,16 +13,19 @@ class MainActivity : AppCompatActivity() {
 
     private var count: Count = Count.Base(min = 0, step = 2, max = 5)
 
-    private var state: UiState = count.initial("0")
+    private lateinit var state: UiState
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (savedInstanceState == null) {
+            state = count.initial(countTextView.text.toString())
+        }
+
         decrementButton.setOnClickListener {
             changeStateTo(count.decrement(countTextView.text.toString()))
         }
-
         incrementButton.setOnClickListener {
             changeStateTo(count.increment(countTextView.text.toString()))
         }
