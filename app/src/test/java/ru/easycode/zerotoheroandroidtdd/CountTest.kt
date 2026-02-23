@@ -2,6 +2,9 @@ package ru.easycode.zerotoheroandroidtdd
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import ru.easycode.zerotoheroandroidtdd.Count.Companion.MAX_SHOULD_BE_MORE_THAN_STEP
+import ru.easycode.zerotoheroandroidtdd.Count.Companion.MAX_SHOULD_BE_POSITIVE
+import ru.easycode.zerotoheroandroidtdd.Count.Companion.STEP_SHOULD_BE_POSITIVE
 
 /**
  * Please also check ui test
@@ -47,10 +50,12 @@ class CountTest {
 
     @Test
     fun test_step_negative_message() {
+        val step = -2
+
         try {
-            Count.Base(step = -2, max = 11)
+            Count.Base(step = step, max = 11)
         } catch (e: Exception) {
-            assertEquals("step should be positive, but was -2", e.message)
+            assertEquals("$STEP_SHOULD_BE_POSITIVE $step", e.message)
         }
     }
 
@@ -66,10 +71,12 @@ class CountTest {
 
     @Test
     fun test_negative_max_message() {
+        val max = -2
+
         try {
-            Count.Base(step = 5, max = -2)
+            Count.Base(step = 5, max = max)
         } catch (e: Exception) {
-            assertEquals("max should be positive, but was -2", e.message)
+            assertEquals("$MAX_SHOULD_BE_POSITIVE $max", e.message)
         }
     }
 
@@ -83,7 +90,7 @@ class CountTest {
         try {
             Count.Base(step = 5, max = 4)
         } catch (e: Exception) {
-            assertEquals("max should be more than step", e.message)
+            assertEquals(MAX_SHOULD_BE_MORE_THAN_STEP, e.message)
         }
     }
 }

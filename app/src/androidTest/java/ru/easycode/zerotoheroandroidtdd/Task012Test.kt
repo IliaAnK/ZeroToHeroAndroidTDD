@@ -37,7 +37,7 @@ class Task012Test {
             allOf(
                 isAssignableFrom(TextView::class.java),
                 withId(R.id.countTextView),
-                withText("0"),
+                withText(R.string.zero),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
             )
@@ -46,7 +46,7 @@ class Task012Test {
         onView(
             allOf(
                 withId(R.id.incrementButton),
-                withText("increment"),
+                withText(R.string.increment),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
