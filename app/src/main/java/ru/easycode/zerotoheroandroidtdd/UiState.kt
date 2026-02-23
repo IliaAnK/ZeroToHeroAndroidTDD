@@ -7,26 +7,29 @@ import java.io.Serializable
 interface UiState : Serializable {
     val text: String
 
-    fun apply(textView: TextView, button: Button)
+    fun apply(decrementButton: Button, textView: TextView, incrementButton: Button)
 
-    class Initial(override val text: String) : UiState {
-        override fun apply(textView: TextView, button: Button) {
+    data class Min(override val text: String) : UiState {
+        override fun apply(decrementButton: Button, textView: TextView, incrementButton: Button) {
+            decrementButton.isEnabled = false
             textView.text = text
-            button.isEnabled = true
+            incrementButton.isEnabled = true
         }
     }
 
     data class Base(override val text: String) : UiState {
-        override fun apply(textView: TextView, button: Button) {
+        override fun apply(decrementButton: Button, textView: TextView, incrementButton: Button) {
+            decrementButton.isEnabled = true
             textView.text = text
-            button.isEnabled = true
+            incrementButton.isEnabled = true
         }
     }
 
     data class Max(override val text: String) : UiState {
-        override fun apply(textView: TextView, button: Button) {
+        override fun apply(decrementButton: Button, textView: TextView, incrementButton: Button) {
+            decrementButton.isEnabled = true
             textView.text = text
-            button.isEnabled = false
+            incrementButton.isEnabled = false
         }
     }
 }
